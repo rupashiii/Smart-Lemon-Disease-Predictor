@@ -1,13 +1,18 @@
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Flask](https://img.shields.io/badge/Flask-Web%20API-black)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-Deep%20Learning-orange)
+![License](https://img.shields.io/badge/License-CC--BY--NC--SA%204.0-green)
 # Smart Lemon Disease Predictor
 
-Smart Lemon Disease Predictor is a web-based lemon leaf health assistant built from the open-source [Lemon Disease Detector](https://github.com/IshaqJunejo/Lemon-Disease-Detector) project by Muhammad Ishaque Junejo.
+Smart Lemon Disease Predictor is an AI-powered web application designed to identify diseases in lemon leaves using deep learning. The application analyzes uploaded leaf images, predicts the most likely disease, and provides confidence scores, disease information, and treatment recommendations through an intuitive web interface.
+
 
 The app uses a two-model deep learning pipeline:
 
 - A binary classifier checks whether the uploaded image appears to be a lemon leaf.
 - A multi-class classifier predicts the most likely lemon leaf condition and returns confidence scores.
 
-This version adds a redesigned user interface, prediction confidence, disease information, treatment suggestions, and clearer error handling around uploads and API failures.
+The application features a redesigned user interface, prediction confidence visualization, disease descriptions, treatment recommendations, and improved error handling for a smoother user experience.
 
 ## Features
 
@@ -128,17 +133,24 @@ The first request may take longer while the models download and load. An interne
 - If upload validation fails, use a JPG, PNG, or WebP image under 5 MB.
 - If predictions look uncertain, retake the photo with better lighting, a single centered leaf, and a plain background.
 
-## Attribution
+## Acknowledgements
 
-This repository is adapted from:
+This project extends the open-source Lemon Disease Detector developed by Muhammad Ishaque Junejo.
 
 - Original project: [IshaqJunejo/Lemon-Disease-Detector](https://github.com/IshaqJunejo/Lemon-Disease-Detector)
 - Original author: Muhammad Ishaque Junejo
 - DOI: [10.5281/zenodo.19428847](https://doi.org/10.5281/zenodo.19428847)
 - Hugging Face model repository: [IshaqueJunejo/Lemon-Disease-Detector](https://huggingface.co/IshaqueJunejo/Lemon-Disease-Detector)
 - Hugging Face Space: [Lemon Disease Detection](https://huggingface.co/spaces/IshaqueJunejo/Lemon-Disease-Detection)
+  
 
-Major changes in this adaptation include UI redesign, structured prediction responses, confidence display, disease information, treatment suggestions, and improved error handling.
+Enhancements introduced in this project include:
+
+- Redesigned user interface
+- Prediction confidence visualization
+- Disease information and treatment guidance
+- Improved API responses and error handling
+- Better documentation and project organization
 
 ## Citation
 
