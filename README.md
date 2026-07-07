@@ -37,14 +37,17 @@ The application features a redesigned user interface, prediction confidence visu
 
 ## Screenshots
 
-Add screenshots of the updated interface here after running the app locally.
+### Home Page
 
-Suggested screenshots:
+![Home](Images/home.png)
 
-- Home screen before upload
-- Uploaded leaf preview
-- Prediction result with confidence and treatment suggestions
-- Error state for unsupported input
+### Prediction Result
+
+![Prediction](Images/prediction.png)
+
+### Upload
+
+![Upload](Images/upload.png)
 
 ## Project Structure
 
