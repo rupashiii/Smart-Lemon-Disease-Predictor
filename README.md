@@ -39,15 +39,15 @@ The application features a redesigned user interface, prediction confidence visu
 
 ### Home Page
 
-![Home](Images/home.png)
+![Home](Images/Home.png)
 
 ### Prediction Result
 
-![Prediction](Images/prediction.png)
+![Prediction](Images/Prediction.png)
 
 ### Upload
 
-![Upload](Images/upload.png)
+![Upload](Images/Upload.png)
 
 ## Project Structure
 
