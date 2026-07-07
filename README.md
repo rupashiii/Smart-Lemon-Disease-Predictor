@@ -1,80 +1,150 @@
-# Lemon Disease Detector
+# Smart Lemon Disease Predictor
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19428847.svg)](https://doi.org/10.5281/zenodo.19428847)
+Smart Lemon Disease Predictor is a web-based lemon leaf health assistant built from the open-source [Lemon Disease Detector](https://github.com/IshaqJunejo/Lemon-Disease-Detector) project by Muhammad Ishaque Junejo.
 
-A Bi-model Deep Learning Architecture to detect the disease of Lemon Leaves using `Convolutional Neural Networks`.
+The app uses a two-model deep learning pipeline:
 
-The models are also available on [HuggingFace Models](https://huggingface.co/IshaqueJunejo/Lemon-Disease-Detector).
+- A binary classifier checks whether the uploaded image appears to be a lemon leaf.
+- A multi-class classifier predicts the most likely lemon leaf condition and returns confidence scores.
 
-You can try using the model pipeline yourself from the [Gradio Space on HuggingFace](https://huggingface.co/spaces/IshaqueJunejo/Lemon-Disease-Detection).
+This version adds a redesigned user interface, prediction confidence, disease information, treatment suggestions, and clearer error handling around uploads and API failures.
 
-## Demo
+## Features
 
-![Demo Usage](Images/Usage-Demo.gif)
+- Lemon leaf disease prediction from an uploaded image
+- Prediction confidence and top class probability breakdown
+- Disease descriptions and practical treatment suggestions
+- Drag-and-drop image upload with file type and size validation
+- Friendly API and frontend error messages
+- Responsive UI for desktop and mobile use
 
-## Architecture
+## Supported Classes
 
-Architecture is based on 2 `Convolutional Neural Networks`.
+- Anthracnose
+- Bacterial Blight
+- Citrus Canker
+- Curl Virus
+- Deficiency Leaf
+- Dry Leaf
+- Healthy Leaf
+- Sooty Mould
+- Spider Mites
 
-First one is a `Binary Classification Model` that can tell if a given image is a *Lemon Leaf* or *Not*. The Image is passed to second model only if it is a *Lemon Leaf*.
+## Screenshots
 
-Second model is a `Multi-Class Classifier` that tells the likelihood of the given image of Lemon Leaf having each *disease* and of being *healthy*.
+Add screenshots of the updated interface here after running the app locally.
 
-Both models are based of `MobileNetV2` for Transfer Learning, as there was limited number of images to train a model from scratch.
+Suggested screenshots:
 
-You can also have a look at the [Evaluation and Metrics](core/Evaluation-and-Metrics.md).
+- Home screen before upload
+- Uploaded leaf preview
+- Prediction result with confidence and treatment suggestions
+- Error state for unsupported input
 
-If you want to train these models yourself, you can read [Reproducibility Procedure](core/Reproducibility.md).
+## Project Structure
 
-If you want to have a look at the real-world behaviour of this pipeline, you can read the [Field Test Analysis](field-test/analysis.md).
-
-You can also have a look at the [Progress Log](core/Progress-Log.md) for a glimpse of failures encountered on the way.
-
-## How to use
-
-To use this project, you will have to run it locally on your machine, or you can use the [Gradio Space on HuggingFace](https://huggingface.co/spaces/IshaqueJunejo/Lemon-Disease-Detection).
-
-- To run it locally, first clone this repository.
-``` bash
-git clone https://github.com/IshaqJunejo/Lemon-Disease-Detector.git
+```text
+api/                 Flask prediction API
+core/                Training, evaluation, and reproducibility files from the original project
+field-test/          Field test images and notes from the original project
+Images/              Original demo and evaluation images
+web/                 Static frontend client
+LICENSE              Original CC BY-NC-SA 4.0 license
+NOTICE               Attribution and adaptation notes
 ```
-- Go to the `Lemon-Disease-Detector/api/` directory and run the API.
-``` bash
-cd Lemon-Disease-Detector/api/
-pip install -r requirements.txt
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/rupashiii/Smart-Lemon-Disease-Predictor.git
+cd Smart-Lemon-Disease-Predictor
+```
+
+Create and activate a virtual environment:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+On Windows:
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+Install API dependencies:
+
+```bash
+pip install -r api/requirements.txt
+```
+
+## Running the App
+
+Start the Flask prediction API:
+
+```bash
+cd api
 python app.py
 ```
-- Open a new terminal session, and host a server for the frontend-client.
-``` bash
-cd Lemon-Disease-Detector/web/
-python -m http.server
+
+The API runs at:
+
+```text
+http://127.0.0.1:7860
 ```
-- Open a Browser, and run the frontend to test the project by opening `http://127.0.0.1:8000`, upload an image, and click **Analyze**.
 
-#### Optional
+In a second terminal, serve the frontend:
 
-You can change the `web/static/script.js`, by replacing `127.0.0.1:7860/predict` to `<your-ip-address>:7860/predict`, if you want to try it on more than one device in your local network.
+```bash
+cd web
+python -m http.server 8000
+```
 
-## Contributions
+Open the frontend:
 
-Any and every contribution you wish to make for this project is highly appreciated.
+```text
+http://127.0.0.1:8000
+```
 
-- Just fork this repository.
-- Clone your fork.
-- Create a new branch, make changes, and push to your fork.
-- Open a Pull Request.
+Upload a lemon leaf image and select **Analyze leaf**.
 
-## Dataset
+## Model Notes
 
-- [Lemon Leaf Disease Dataset](https://www.kaggle.com/datasets/mahmoudshaheen1134/lemon-leaf-disease-dataset-lldd) on Kaggle
-- [PlantVillage Dataset](https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset) on Kaggle
-- [Natural Images Dataset](https://www.kaggle.com/datasets/prasunroy/natural-images) on Kaggle
+The API downloads the trained models from Hugging Face on first use:
+
+- `models/lemon-leaf-or-not.keras`
+- `models/lemon-leaf-disease-detector.keras`
+
+The first request may take longer while the models download and load. An internet connection is required unless the Hugging Face cache already contains the models.
+
+## Troubleshooting
+
+- If the frontend cannot connect, confirm the Flask API is running at `http://127.0.0.1:7860`.
+- If model loading fails, check your internet connection and Hugging Face availability.
+- If upload validation fails, use a JPG, PNG, or WebP image under 5 MB.
+- If predictions look uncertain, retake the photo with better lighting, a single centered leaf, and a plain background.
+
+## Attribution
+
+This repository is adapted from:
+
+- Original project: [IshaqJunejo/Lemon-Disease-Detector](https://github.com/IshaqJunejo/Lemon-Disease-Detector)
+- Original author: Muhammad Ishaque Junejo
+- DOI: [10.5281/zenodo.19428847](https://doi.org/10.5281/zenodo.19428847)
+- Hugging Face model repository: [IshaqueJunejo/Lemon-Disease-Detector](https://huggingface.co/IshaqueJunejo/Lemon-Disease-Detector)
+- Hugging Face Space: [Lemon Disease Detection](https://huggingface.co/spaces/IshaqueJunejo/Lemon-Disease-Detection)
+
+Major changes in this adaptation include UI redesign, structured prediction responses, confidence display, disease information, treatment suggestions, and improved error handling.
 
 ## Citation
 
-If you use this code or the findings from this repository or the preprint in your research, please cite it as follows:
+If you use the original model, code, or findings in research, cite the original work:
 
-``` bibtex
+```bibtex
 @misc{junejo_2026_lemon_disease_detector,
   author       = {Junejo, Muhammad Ishaque},
   title        = {A Dual-Model Deep Learning Pipeline for Disease Classification in Lemon Leaves},
@@ -87,7 +157,8 @@ If you use this code or the findings from this repository or the preprint in you
 }
 ```
 
-
 ## License
 
-This project is Licensed Under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](LICENSE) due to the inclusion of [Plantvillage Dataset](https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset) and [Natural Images Dataset](https://www.kaggle.com/datasets/prasunroy/natural-images) which are also License under **CC BY-NC-SA 4.0**. 
+This project preserves the original Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license. See [LICENSE](LICENSE) for the full license text.
+
+Because this is an adaptation of the original project, redistribution and modifications should follow the original license terms, including attribution, non-commercial use, and share-alike requirements.

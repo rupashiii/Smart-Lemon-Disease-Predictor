@@ -1,24 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Lemon Disease Detector - Ishaque Junejo</title>
-	<link rel="stylesheet" href="static/style.css">
+    <title>Smart Lemon Disease Predictor</title>
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-	<h1>Lemon Disease Detector</h1>
-	<h2>Upload Image</h2>
-	<input type="file" id="imageInput" accept="image/*" hidden>
-	<label for="imageInput" class="upload-image">Choose Image</label>
-	
-	<img id="preview" src="" alt="Image Preview will appear here">
+    <main class="app-shell">
+        <section class="hero">
+            <div>
+                <p class="eyebrow">Leaf health assistant</p>
+                <h1>Smart Lemon Disease Predictor</h1>
+                <p class="intro">Upload a clear lemon leaf photo to identify likely disease, confidence, and practical treatment steps.</p>
+            </div>
+            <div class="status-pill" id="apiStatus">Ready</div>
+        </section>
 
-	<button id="analyze-image" onclick="analyzeImage()">Analyze</button>
+        <section class="workspace">
+            <div class="upload-panel">
+                <div class="panel-heading">
+                    <p class="eyebrow">Image input</p>
+                    <h2>Analyze a leaf</h2>
+                </div>
 
-	<h3>Response:</h3>
-	<pre id="responseArea"></pre>
+                <input type="file" id="imageInput" accept="image/*" hidden>
+                <label for="imageInput" class="drop-zone" id="dropZone">
+                    <span class="upload-icon">+</span>
+                    <strong>Choose or drop an image</strong>
+                    <small>JPG, PNG, or WebP under 5 MB</small>
+                </label>
 
-	<script src="static/script.js"></script>
+                <div class="preview-frame" id="previewFrame">
+                    <img id="preview" src="" alt="Selected lemon leaf preview">
+                </div>
+
+                <button id="analyze-image" type="button">Analyze leaf</button>
+                <p class="helper-text" id="helperText">Use a close-up photo with good light and one leaf in frame.</p>
+            </div>
+
+            <div class="result-panel" aria-live="polite">
+                <div class="panel-heading">
+                    <p class="eyebrow">Diagnosis</p>
+                    <h2 id="resultTitle">Awaiting image</h2>
+                </div>
+
+                <div class="confidence-card" id="confidenceCard">
+                    <span class="confidence-value" id="confidenceValue">--</span>
+                    <span class="confidence-label">Prediction confidence</span>
+                </div>
+
+                <div class="info-grid">
+                    <div>
+                        <h3>What it means</h3>
+                        <p id="diseaseDescription">Results and crop-care guidance will appear here after analysis.</p>
+                    </div>
+                    <div>
+                        <h3>Treatment suggestions</h3>
+                        <ul id="treatmentList">
+                            <li>Upload a leaf image to get tailored suggestions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scores" id="scores"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="static/script.js"></script>
 </body>
 </html>

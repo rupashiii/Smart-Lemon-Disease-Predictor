@@ -1,0 +1,21 @@
+Smart Lemon Disease Predictor
+
+This project is adapted from Lemon Disease Detector by Muhammad Ishaque Junejo:
+https://github.com/IshaqJunejo/Lemon-Disease-Detector
+
+Original project DOI:
+https://doi.org/10.5281/zenodo.19428847
+
+Original model repository:
+https://huggingface.co/IshaqueJunejo/Lemon-Disease-Detector
+
+Original license:
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.
+The full license text is preserved in LICENSE.
+
+Adaptation changes:
+- Redesigned the static web interface.
+- Added structured prediction output with confidence values.
+- Added disease information and treatment suggestions.
+- Improved frontend and API error handling.
+- Rewrote README with setup, usage, screenshots, overview, and attribution.
